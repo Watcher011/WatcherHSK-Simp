@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ThingDef ParentName="BuildingBase" Name="SculptureBase" Abstract="True">
+    <thingClass>Building_Art</thingClass>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>PassThroughOnly</passability>
+    <pathCost>50</pathCost>
+    <useHitPoints>true</useHitPoints>
+    <minifiedDef>MinifiedThing</minifiedDef>
+    <thingCategories>
+      <li>BuildingsArt</li>
+    </thingCategories>
+    <thingSetMakerTags><li>RewardStandardLowFreq</li></thingSetMakerTags>
+    <statBases>
+      <Flammability>1.0</Flammability>
+      <SellPriceFactor>1.10</SellPriceFactor>
+      <MeditationFocusStrength>0.0</MeditationFocusStrength>
+    </statBases>
+    <comps>
+      <li>
+        <compClass>CompQuality</compClass>
+      </li>
+      <li Class="CompProperties_Art">
+        <nameMaker>NamerArtSculpture</nameMaker>
+        <descriptionMaker>ArtDescription_Sculpture</descriptionMaker>
+        <canBeEnjoyedAsArt>true</canBeEnjoyedAsArt>
+      </li>
+      <li Class="CompProperties_MeditationFocus">
+        <statDef>MeditationFocusStrength</statDef>
+        <focusTypes>
+          <li>Artistic</li>
+        </focusTypes>
+        <offsets>
+          <li Class="FocusStrengthOffset_Quality">
+            <curve>
+              <points>
+                <li>(0,0.12)</li> <!-- awful -->
+                <li>(1,0.16)</li> <!-- poor -->
+                <li>(2,0.20)</li> <!-- normal -->
+                <li>(3,0.22)</li> <!-- good -->
+                <li>(4,0.24)</li> <!-- excellent -->
+                <li>(5,0.26)</li> <!-- masterwork -->
+                <li>(6,0.28)</li> <!-- legendary -->
+              </points>
+            </curve>
+          </li>
+          <li Class="FocusStrengthOffset_BuildingDefsWithQuality">
+            <defs>
+              <li>SculptureSmall</li>
+              <li>SculptureLarge</li>
+              <li>SculptureGrand</li>
+            </defs>
+            <radius>9.9</radius>
+            <maxBuildings>8</maxBuildings>
+            <focusPerQuality>
+              <points>
+                <li>(0,0.0)</li> <!-- awful -->
+                <li>(1,0.0)</li> <!-- poor -->
+                <li>(2,0.01)</li> <!-- normal -->
+                <li>(3,0.01)</li> <!-- good -->
+                <li>(4,0.01)</li> <!-- excellent -->
+                <li>(5,0.02)</li> <!-- masterwork -->
+                <li>(6,0.02)</li> <!-- legendary -->
+              </points>
+            </focusPerQuality>
+            <explanationKey>MeditationFocusPerSculpture</explanationKey>
+            <explanationKeyAbstract>MeditationFocusPerSculptureAbstract</explanationKeyAbstract>
+          </li>
+        </offsets>
+      </li>
+      <li Class="CompProperties_Styleable"></li>
+    </comps>
+    <placeWorkers>
+      <li>PlaceWorker_MeditationOffsetBuildingsNear</li>
+    </placeWorkers>
+    <inspectorTabs>
+      <li>ITab_Art</li>
+    </inspectorTabs>
+    <tradeTags>
+      <li>Art</li>
+    </tradeTags>
+    <recipeMaker>
+      <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+      <workSkill>Artistic</workSkill>
+      <unfinishedThingDef>UnfinishedSculpture</unfinishedThingDef>
+      <effectWorking>Sculpt</effectWorking>
+      <soundWorking>Recipe_Sculpt</soundWorking>
+      <recipeUsers>
+        <li>TableSculpting</li>
+      </recipeUsers>
+      <defaultIngredientFilter>
+        <categories>
+          <li>Root</li>
+        </categories>
+        <disallowedThingDefs>
+          <li>Gold</li>
+          <li>Silver</li>
+          <li>Plasteel</li>
+          <li>Jade</li>
+          <li>Uranium</li>
+        </disallowedThingDefs>
+      </defaultIngredientFilter>
+    </recipeMaker>
+    <ideoBuildingNamerBase MayRequire="Ludeon.RimWorld.Ideology">NamerIdeoSculpture</ideoBuildingNamerBase>
+    <ritualFocus>
+      <spectateDistance>2</spectateDistance>
+      <allowedSpectateSides>Down</allowedSpectateSides>
+    </ritualFocus>
+  </ThingDef>
+
+  
+  
+  <!--================================ Sculptures ======================================-->
+
+
+
+
+	<ThingDef ParentName="SculptureBase">
+		<defName>SimpArt</defName>
+		<label>скульптура трактирщика</label>
+		<description>Скульптура Симпая для колонии.</description>
+		<graphicData>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<texPath>Things/Simp</texPath>
+			<drawSize>(2,2.3)</drawSize>
+		</graphicData>
+		<fillPercent>0.3</fillPercent>
+		<rotatable>false</rotatable>
+		<statBases>
+			<MaxHitPoints>170</MaxHitPoints>
+			<Beauty>70</Beauty>
+			<WorkToMake>36000</WorkToMake>
+			<Bulk>80</Bulk>
+			<Mass>50</Mass>
+			<StyleDominance MayRequire="Ludeon.RimWorld.Ideology">48</StyleDominance>
+		</statBases>
+		<size>(2,2)</size>
+		<stuffCategories>
+			<li>Metallic</li>
+			<li>Woody</li>
+			<li>Stony</li>
+			<li>Ceramic</li>
+		</stuffCategories>
+		<costStuffCount>100</costStuffCount>
+		<comps>
+			<li Class="CompProperties_Glower">
+				<glowRadius>1</glowRadius>
+				<glowColor>(180,197,215,0)</glowColor>
+			</li>
+		</comps>
+	</ThingDef>
+	
+
+
+
+
+</Defs>
